@@ -1,7 +1,11 @@
-
+import logging
 import boto3
 import os
 
+
+# we are creating a file that will store our logs
+# we are setting the default logging level to debug (it is usually warning)
+logging.basicConfig(filename='upload_s3.log', level=logging.INFO, format='%(asctime)s:%(levelname)s:%(message)s')
 
 def upload_to_aws():
 
@@ -14,6 +18,6 @@ def upload_to_aws():
             aws_secret_access_key=SECRET_KEY
         )
 
-    s3_client.upload_file('Downloads/ItJobsWatchTop30.csv', 'eng-67-shahrukh-devops', 'ItJobsWatchTop30.csv')
-    print("Your file has been successfully uploaded to an AWS bucket!")
+    s3_client.upload_file('Downloads/ItJobsWatchTop30.csv', 'andrew-mvc-with-itjobs', 'ItJobsWatchTop30.csv')
+    logging.info("Your file has been successfully uploaded to an AWS bucket!")
 
